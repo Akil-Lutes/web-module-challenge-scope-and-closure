@@ -62,37 +62,49 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function score(){
+  return Math.floor(Math.random() * Math.floor(5));
 }
 
 
-/* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
-Use the finalScore function below to do the following:
-  1. Receive the callback function `inning` that was created in Task 2 
-  2. Receive a number of innings to be played
-  3. After each inning, update the score of the home and away teams
-  4. After the last inning, return an object containing the final (total) score of the innings played
-  
-  For example: invoking finalScore(inning, 9) might return this object:
-{
-  "Home": 11,
-  "Away": 5
-}
-*/ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+
+function baseballGame (scoreCB){
+  return {
+    Home: score(),
+    Away: score()
+  }
 }
 
-/* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
-Use the getInningScore() function below to do the following:
-  1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
-  2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
+// console.log(baseballGame(score));
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function finalScore(newScore, newGame){
+  const theScore = [];
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i = 0; i < 10; i++) {
+    const currentScore = baseballGame(score);
+    homeScore = homeScore + currentScore.Home
+    awayScore = awayScore + currentScore.Away
+    theScore.push(`${i + 1} Away ${currentScore.Away} - Home ${currentScore.Home}`)
+    } 
+    // if (homeScore === awayScore) {
+    //     return "This game will require extra innings"
+    // } else {
+    //     return "Final Score: "
+    // }
+
+  return theScore;
 }
+
+
+function scoreboard() {
+  const newScore = score();
+  const newGame = baseballGame();
+  console.log(finalScore(newScore, newGame));
+}
+
+scoreboard();
 
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
@@ -135,12 +147,6 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ]  
   */
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
-
-
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
